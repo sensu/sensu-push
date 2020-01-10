@@ -18,7 +18,6 @@ module Sensu
 
       def event
         {
-          :timestamp => Time.now.to_i,
           :entity => {
             :metadata => {
               :name => @options[:entity_name],
