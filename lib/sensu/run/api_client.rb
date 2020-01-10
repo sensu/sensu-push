@@ -19,12 +19,34 @@ module Sensu
         @backends.shift
       end
 
-      def post_event(event)
-        namespace = @options.fetch(:namespace, "default")
-        request = Net::HTTP::Post.new("/api/core/v2/namespaces/#{namespace}/events")
+      def entity_exists?(entity)
+        request = Net::HTTP::Get.new("/api/core/v2/namespaces/#{entity.namespace}/entities/#{entity.name}")
         request["Content-Type"] = "application/json"
         request["Authorization"] = "Key #{@options[:api_key]}"
-        request.body = JSON.dump(event)
+        response = @http.request(request)
+        response.code == "200"
+      end
+
+      def create_entity(entity)
+        request = Net::HTTP::Post.new("/api/core/v2/namespaces/#{entity.namespace}/entities")
+        request["Content-Type"] = "application/json"
+        request["Authorization"] = "Key #{@options[:api_key]}"
+        request.body = JSON.dump(entity.to_hash)
+        response = @http.request(request)
+        puts response.inspect
+      end
+
+      def create_entity_if_missing(entity)
+        unless entity_exists?(entity)
+          post_entity(entity)
+        end
+      end
+
+      def create_event(event)
+        request = Net::HTTP::Post.new("/api/core/v2/namespaces/#{event.entity.namespace}/events")
+        request["Content-Type"] = "application/json"
+        request["Authorization"] = "Key #{@options[:api_key]}"
+        request.body = JSON.dump(event.to_hash)
         response = @http.request(request)
         puts response.inspect
       end

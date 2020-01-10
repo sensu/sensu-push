@@ -3,38 +3,31 @@ require "open3"
 module Sensu
   module Run
     class Check
-      attr_reader :output, :status
+      attr_reader :name, :namespace, :output, :status
 
       def initialize(options={})
         @options = options
+        @name = @options[:check_name]
+        @namespace = @options.fetch(:namespace, "default")
       end
 
-      def exec
+      def exec!
         stdin, stdout, stderr, wait = Open3.popen3(@options[:command])
         @output = "#{stdout.read}\n#{stderr.read}"
         @status = wait.value.exitstatus
         [@output, @status]
       end
 
-      def event
+      def to_hash
         {
-          :entity => {
-            :metadata => {
-              :name => @options[:entity_name],
-              :namespace => @options.fetch(:namespace, "default")
-            },
-            :entity_class => "proxy"
+          :metadata => {
+            :name => @name,
+            :namespace => @namespace
           },
-          :check => {
-            :metadata => {
-              :name => @options[:check_name],
-              :namespace => @options.fetch(:namespace, "default")
-            },
-            :command => @options[:command],
-            :output => @output,
-            :status => @status,
-            :ttl => @options.fetch(:ttl, 0)
-          }
+          :command => @options[:command],
+          :output => @output,
+          :status => @status,
+          :ttl => @options.fetch(:ttl, 0)
         }
       end
     end

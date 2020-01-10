@@ -8,9 +8,11 @@ require "sensu/run"
 
 options = Sensu::Run.read_cli_opts
 
+entity = Sensu::Run::Entity.new(options)
 check = Sensu::Run::Check.new(options)
-check.exec
-event = check.event
+check.exec!
+event = Sensu::Run::Event.new(entity, check)
 
 api = Sensu::Run::APIClient.new(options)
-api.post_event(event)
+api.create_entity_if_missing(entity)
+api.create_event(event)
