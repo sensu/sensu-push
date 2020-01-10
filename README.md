@@ -1,28 +1,35 @@
-# Sensu::Run
+# Sensu Run
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sensu/run`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Sensu Run is a utility for executing Sensu Go checks on systems that cannot run the Sensu Go Agent. Sensu Run wraps the check command execution, constructs a Sensu Go Event, and posts the Event to a Sensu Go Backend API for processing. This utility is written in Ruby (1.8+) and only uses stdlib in hopes it can run on the vast majority of systems.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'sensu-run'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sensu-run
+gem install sensu-run
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ sensu-run -h
+Usage: sensu-run [options]
+    -h, --help                       Display this message
+    -V, --version                    Display version
+    -n, --namespace NAME             Sensu Go namespace
+    -c, --check-name NAME            Sensu Go check name
+    -e, --entity-name NAME           Sensu Go entity name
+    -t, --check-timeout SECONDS      Sensu Go check execution timeout
+    -T, --check-ttl SECONDS          Sensu Go check TTL
+    -H, --handlers NAME[,NAME]       Sensu Go event handlers
+    -b, --backends URL[,URL]         URL or comma-delimited list of Sensu Go Backend API URLs
+    -k, --api-key KEY                Sensu Go Backend API key
+```
+
+Example:
+
+```
+$ sensu-run -c true -e laptop -b http://localhost:8080 -k '46691493-dee5-46d8-8d2b-f37a18424afc' -- true
+```
 
 ## Development
 
@@ -32,7 +39,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sensu-run.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sensu/sensu-run.
 
 ## License
 

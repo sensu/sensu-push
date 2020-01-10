@@ -35,7 +35,7 @@ module Sensu
         opts.on("-H", "--handlers NAME[,NAME]", "Sensu Go event handlers") do |handlers|
           options[:handlers] = handlers.split(",")
         end
-        opts.on("-b", "--backends URL[,URL]", "URL or comma-delimited list of Sensu Go Backend API URLss") do |backends|
+        opts.on("-b", "--backends URL[,URL]", "URL or comma-delimited list of Sensu Go Backend API URLs") do |backends|
           options[:backends] = backends.split(",")
         end
         opts.on("-k", "--api-key KEY", "Sensu Go Backend API key") do |key|
