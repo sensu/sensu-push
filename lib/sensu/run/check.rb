@@ -32,7 +32,8 @@ module Sensu
             },
             :command => @options[:command],
             :output => @output,
-            :status => @status
+            :status => @status,
+            :ttl => @options.fetch(:ttl, 0)
           }
         }
       end
