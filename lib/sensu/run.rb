@@ -1,5 +1,6 @@
 require "optparse"
 require "sensu/run/version"
+require "sensu/run/check"
 
 module Sensu
   module Run
@@ -39,6 +40,8 @@ module Sensu
       end
 
       optparse.parse!(arguments)
+      options[:command] = arguments.join(" ")
+
       options
     end
   end
