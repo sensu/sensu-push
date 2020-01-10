@@ -30,6 +30,7 @@ Usage: sensu-run [options]
     -H, --handlers NAME[,NAME]       Sensu Go event handlers
     -b, --backends URL[,URL]         URL or comma-delimited list of Sensu Go Backend API URLs
     -k, --api-key KEY                Sensu Go Backend API key
+    -s, --insecure-skip-tls-verify   Skip TLS verify peer when using HTTPS
 ```
 
 Example:
