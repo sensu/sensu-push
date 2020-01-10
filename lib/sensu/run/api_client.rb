@@ -1,6 +1,11 @@
-require "net/http"
 require "uri"
 require "json"
+
+begin
+  require "net/https"
+rescue LoadError
+  require "net/http"
+end
 
 module Sensu
   module Run
@@ -9,6 +14,13 @@ module Sensu
         @options = options
         uri = URI.parse(select_backend)
         @http = Net::HTTP.new(uri.host, uri.port)
+        if uri.scheme == "https"
+          @http.use_ssl = true
+          @http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          if options[:skip_tls_verify_peer]
+            @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          end
+        end
       end
 
       def select_backend
@@ -38,7 +50,7 @@ module Sensu
 
       def create_entity_if_missing(entity)
         unless entity_exists?(entity)
-          post_entity(entity)
+          create_entity(entity)
         end
       end
 

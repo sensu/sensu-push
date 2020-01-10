@@ -43,6 +43,9 @@ module Sensu
         opts.on("-k", "--api-key KEY", "Sensu Go Backend API key") do |key|
           options[:api_key] = key
         end
+        opts.on("-s", "--insecure-skip-tls-verify", "Skip TLS verify peer when using HTTPS") do |key|
+          options[:skip_tls_verify_peer] = true
+        end
       end
 
       optparse.parse!(arguments)
