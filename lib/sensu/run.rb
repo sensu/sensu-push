@@ -1,6 +1,7 @@
 require "optparse"
 require "sensu/run/version"
 require "sensu/run/check"
+require "sensu/run/api_client"
 
 module Sensu
   module Run

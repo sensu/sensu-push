@@ -9,6 +9,8 @@ require "sensu/run"
 options = Sensu::Run.read_cli_opts
 check = Sensu::Run::Check.new(options)
 check.exec
-event= check.event
+event = check.event
 
 puts event.inspect
+
+api = Sensu::Run::APIClient.new(options)
