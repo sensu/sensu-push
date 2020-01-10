@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "A utility for executing Sensu Go checks on systems that cannot run the Sensu Go Agent"
   spec.description   = "A utility for executing Sensu Go checks on systems that cannot run the Sensu Go Agent"
-  spec.homepage      = "https://sensu.io"
+  spec.homepage      = "https://github.com/sensu/sensu-run"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
