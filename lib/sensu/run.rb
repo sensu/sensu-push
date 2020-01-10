@@ -17,6 +17,9 @@ module Sensu
           puts VERSION
           exit
         end
+        opts.on("-n", "--namespace NAME", "Sensu namespace") do |name|
+          options[:namespace] = name
+        end
         opts.on("-c", "--check-name NAME", "Sensu check name") do |name|
           options[:check_name] = name
         end

@@ -20,7 +20,8 @@ module Sensu
       end
 
       def post_event(event)
-        request = Net::HTTP::Post.new("/api/core/v2/namespaces/default/events")
+        namespace = @options.fetch(:namespace, "default")
+        request = Net::HTTP::Post.new("/api/core/v2/namespaces/#{namespace}/events")
         request["Content-Type"] = "application/json"
         request["Authorization"] = "Key #{@options[:api_key]}"
         request.body = JSON.dump(event)
