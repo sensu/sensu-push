@@ -1,6 +1,12 @@
 # Sensu Run
 
-Sensu Run is a utility for executing Sensu Go checks on systems that cannot run the Sensu Go Agent. Sensu Run wraps the check command execution, constructs a Sensu Go Event, and posts the Event to a Sensu Go Backend API for processing. This utility is written in Ruby (1.8+) and only uses stdlib in hopes it can run on the vast majority of systems. This utility was inspired by https://hackage.haskell.org/package/sensu-run.
+Sensu Run is a utility for executing Sensu Go checks on systems that
+cannot run the Sensu Go Agent. Sensu Run wraps the check command
+execution, constructs a Sensu Go Entity and Event, and posts them to a
+Sensu Go Backend API for processing. This utility is written in Ruby
+(1.8+) and only uses stdlib in hopes it can run on the vast majority
+of systems. This utility was inspired by
+https://hackage.haskell.org/package/sensu-run.
 
 ## Installation
 
