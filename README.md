@@ -1,25 +1,25 @@
-# Sensu Run
+# Sensu Push
 
-Sensu Run is a utility for executing Sensu Go checks on systems that
-cannot run the Sensu Go Agent. Sensu Run wraps the check command
+Sensu Push is a utility for executing Sensu Go checks on systems that
+cannot run the Sensu Go Agent. Sensu Push wraps the check command
 execution, constructs a Sensu Go Entity and Event, and communicates
 with the Sensu Go Backend API to create the Entity (if missing) and
 submit the Event for processing. This utility is written in Ruby
 (1.8+) and only uses stdlib in hopes it can run on the vast majority
 of systems. This utility was inspired by
-https://hackage.haskell.org/package/sensu-run.
+https://hackage.haskell.org/package/sensu-push.
 
 ## Installation
 
 ```
-gem install sensu-run
+gem install sensu-push
 ```
 
 ## Usage
 
 ```
-$ sensu-run -h
-Usage: sensu-run [options]
+$ sensu-push -h
+Usage: sensu-push [options]
     -h, --help                       Display this message
     -V, --version                    Display version
     -n, --namespace NAME             Sensu Go namespace
@@ -36,7 +36,7 @@ Usage: sensu-run [options]
 Example:
 
 ```
-$ sensu-run -c true -e laptop -b http://localhost:8080 -k '46691493-dee5-46d8-8d2b-f37a18424afc' -- true
+$ sensu-push -c true -e laptop -b http://localhost:8080 -k '46691493-dee5-46d8-8d2b-f37a18424afc' -- true
 ```
 
 ## Development
@@ -47,7 +47,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/sensu/sensu-run.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sensu/sensu-push.
 
 ## License
 

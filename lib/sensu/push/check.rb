@@ -1,7 +1,7 @@
 require "open3"
 
 module Sensu
-  module Run
+  module Push
     class Check
       attr_reader :name, :namespace, :output, :status
 

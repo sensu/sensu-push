@@ -1,10 +1,10 @@
-RSpec.describe Sensu::Run do
+RSpec.describe Sensu::Push do
   it "has a version number" do
-    expect(Sensu::Run::VERSION).not_to be nil
+    expect(Sensu::Push::VERSION).not_to be nil
   end
 
   it "can parse cli arguments" do
-    options = Sensu::Run.read_cli_opts(["-c", "foo", "--", "true"])
+    options = Sensu::Push.read_cli_opts(["-c", "foo", "--", "true"])
     expected = {
       :check_name => "foo",
       :command => "true"

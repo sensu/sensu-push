@@ -1,12 +1,12 @@
 require "optparse"
-require "sensu/run/version"
-require "sensu/run/entity"
-require "sensu/run/check"
-require "sensu/run/event"
-require "sensu/run/api_client"
+require "sensu/push/version"
+require "sensu/push/entity"
+require "sensu/push/check"
+require "sensu/push/event"
+require "sensu/push/api_client"
 
 module Sensu
-  module Run
+  module Push
     def self.read_cli_opts(arguments=ARGV)
       options = {}
 

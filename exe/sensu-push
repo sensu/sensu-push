@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+unless $:.include?(File.dirname(__FILE__) + "/../lib/")
+  $: << File.dirname(__FILE__) + "/../lib"
+end
+
+require "sensu/push"
+
+options = Sensu::Push.read_cli_opts
+
+entity = Sensu::Push::Entity.new(options)
+check = Sensu::Push::Check.new(options)
+check.exec!
+event = Sensu::Push::Event.new(entity, check)
+
+api = Sensu::Push::APIClient.new(options)
+api.create_entity_if_missing(entity)
+api.create_event(event)

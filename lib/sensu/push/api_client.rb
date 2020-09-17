@@ -8,7 +8,7 @@ rescue LoadError
 end
 
 module Sensu
-  module Run
+  module Push
     class APIClient
       def initialize(options={})
         @options = options

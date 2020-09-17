@@ -1,5 +1,5 @@
 module Sensu
-  module Run
+  module Push
     class Event
       attr_reader :entity, :check
 

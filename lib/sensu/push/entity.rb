@@ -1,5 +1,5 @@
 module Sensu
-  module Run
+  module Push
     class Entity
       attr_reader :name, :namespace
 
