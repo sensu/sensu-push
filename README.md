@@ -6,8 +6,7 @@ execution, constructs a Sensu Go Entity and Event, and communicates
 with the Sensu Go Backend API to create the Entity (if missing) and
 submit the Event for processing. This utility is written in Ruby
 (1.8+) and only uses stdlib in hopes it can run on the vast majority
-of systems. This utility was inspired by
-https://hackage.haskell.org/package/sensu-push.
+of systems.
 
 ## Installation
 
